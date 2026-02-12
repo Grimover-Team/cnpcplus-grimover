@@ -32,7 +32,6 @@ import noppes.npcs.entity.EntityNPCInterface;
 import noppes.npcs.roles.RoleMount;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import tconstruct.client.tabs.InventoryTabCustomNpc;
 
 import java.util.ArrayList;
 
@@ -135,9 +134,7 @@ public class ClientTickHandler {
     public void onKey(InputEvent.KeyInputEvent event) {
         if (ClientProxy.NPCButton.isPressed()) {
             Minecraft mc = Minecraft.getMinecraft();
-            if (mc.currentScreen == null) {
-                InventoryTabCustomNpc.tabHelper();
-            } else if (mc.currentScreen instanceof GuiCNPCInventory)
+            if (mc.currentScreen instanceof GuiCNPCInventory)
                 mc.setIngameFocus();
         }
 

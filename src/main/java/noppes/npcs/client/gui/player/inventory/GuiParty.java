@@ -35,7 +35,6 @@ import noppes.npcs.client.gui.util.ITextfieldListener;
 import noppes.npcs.controllers.data.Party;
 import noppes.npcs.controllers.data.Quest;
 import org.lwjgl.opengl.GL11;
-import tconstruct.client.tabs.AbstractTab;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -239,9 +238,6 @@ public class GuiParty extends GuiCNPCInventory implements ITextfieldListener, IC
 
     @Override
     protected void actionPerformed(GuiButton guibutton) {
-        if (guibutton instanceof AbstractTab)
-            return;
-
         Party party = ClientCacheHandler.party;
         if (guibutton.id <= -100) {
             super.actionPerformed(guibutton);

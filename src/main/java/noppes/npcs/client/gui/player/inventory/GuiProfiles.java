@@ -29,7 +29,6 @@ import noppes.npcs.client.gui.util.ISubGuiListener;
 import noppes.npcs.client.gui.util.SubGuiInterface;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import tconstruct.client.tabs.AbstractTab;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -87,9 +86,6 @@ public class GuiProfiles extends GuiCNPCInventory implements ISubGuiListener, IC
 
     @Override
     protected void actionPerformed(GuiButton guibutton) {
-        if (guibutton instanceof AbstractTab)
-            return;
-
         if (guibutton.id <= -100) {
             super.actionPerformed(guibutton);
             return;

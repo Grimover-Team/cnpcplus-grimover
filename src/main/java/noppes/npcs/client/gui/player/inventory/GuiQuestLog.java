@@ -28,7 +28,6 @@ import noppes.npcs.controllers.data.Party;
 import noppes.npcs.util.ValueUtil;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import tconstruct.client.tabs.AbstractTab;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -181,9 +180,6 @@ public class GuiQuestLog extends GuiCNPCInventory implements ICustomScrollListen
 
     @Override
     protected void actionPerformed(GuiButton guibutton) {
-        if (guibutton instanceof AbstractTab)
-            return;
-
         if (guibutton.id <= -100) {
             super.actionPerformed(guibutton);
             return;

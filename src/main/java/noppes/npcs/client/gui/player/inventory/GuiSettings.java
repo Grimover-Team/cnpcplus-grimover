@@ -15,7 +15,6 @@ import noppes.npcs.client.gui.util.GuiNpcTextField;
 import noppes.npcs.client.gui.util.ITextfieldListener;
 import noppes.npcs.config.ConfigClient;
 import org.lwjgl.opengl.GL11;
-import tconstruct.client.tabs.AbstractTab;
 
 public class GuiSettings extends GuiCNPCInventory implements ITextfieldListener, GuiYesNoCallback {
 
@@ -104,9 +103,6 @@ public class GuiSettings extends GuiCNPCInventory implements ITextfieldListener,
 
     @Override
     protected void actionPerformed(GuiButton btn) {
-        if (btn instanceof AbstractTab)
-            return;
-
         if (btn.id <= -100) {
             super.actionPerformed(btn);
             return;

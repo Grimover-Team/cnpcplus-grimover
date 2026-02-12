@@ -210,9 +210,6 @@ import noppes.npcs.items.ItemLinked;
 import noppes.npcs.items.ItemNpcTool;
 import noppes.npcs.items.ItemScripted;
 import org.lwjgl.input.Keyboard;
-import tconstruct.client.tabs.InventoryTabCustomNpc;
-import tconstruct.client.tabs.InventoryTabVanilla;
-import tconstruct.client.tabs.TabRegistry;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -305,14 +302,6 @@ public class ClientProxy extends CommonProxy {
         ClientTagMapController.Instance = new ClientTagMapController();
 
         MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
-
-        if (ConfigClient.InventoryGuiEnabled) {
-            MinecraftForge.EVENT_BUS.register(new TabRegistry());
-            if (TabRegistry.getTabList().isEmpty()) {
-                TabRegistry.registerTab(new InventoryTabVanilla());
-            }
-            TabRegistry.registerTab(new InventoryTabCustomNpc());
-        }
     }
 
     public FakePlayer getCommandPlayer(IWorld world) {

@@ -7,13 +7,11 @@ import kamkeel.npcs.network.packets.request.mainmenu.MainmenuDisplayGetPacket;
 import kamkeel.npcs.network.packets.request.mainmenu.MainmenuDisplaySavePacket;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
 import noppes.npcs.DataDisplay;
 import noppes.npcs.client.NoppesUtil;
 import noppes.npcs.client.gui.GuiNpcTextureCloaks;
 import noppes.npcs.client.gui.GuiNpcTextureOverlays;
 import noppes.npcs.client.gui.SubGuiCustomHitbox;
-import noppes.npcs.client.gui.SubGuiNpcName;
 import noppes.npcs.client.gui.SubGuiNpcTint;
 import noppes.npcs.client.gui.model.GuiCreationScreen;
 import noppes.npcs.client.gui.select.GuiTextureSelection;
@@ -48,11 +46,6 @@ public class GuiNpcDisplay extends GuiNPCInterface2 implements ITextfieldListene
         nameText = new GuiNpcTextField(0, this, fontRendererObj, guiLeft + 50, y, 206, 20, display.name);
         addTextField(nameText);
         this.addButton(new GuiNpcButton(0, guiLeft + 253 + 52, y, 110, 20, new String[]{"display.show", "display.hide", "display.showAttacking"}, display.showName));
-
-        this.addButton(new GuiNpcButton(14, guiLeft + 259, y, 20, 20, Character.toString('\u21bb')));
-        getButton(14).setIconTexture(new ResourceLocation("customnpcs", "textures/gui/slot.png"));
-
-        this.addButton(new GuiNpcButton(15, guiLeft + 259 + 22, y, 20, 20, Character.toString('\u22EE')));
 
         y += 23;
         addLabel(new GuiNpcLabel(11, "gui.title", guiLeft + 5, y + 5));
@@ -183,12 +176,6 @@ public class GuiNpcDisplay extends GuiNPCInterface2 implements ITextfieldListene
             setSubGui(new SubGuiCustomHitbox(display.hitboxData));
         } else if (button.id == 13) {
             setSubGui(new SubGuiNpcTint(display.tintData));
-        } else if (button.id == 14) {
-            String name = display.getRandomName();
-            display.setName(name);
-            getTextField(0).setText(name);
-        } else if (button.id == 15) {
-            setSubGui(new SubGuiNpcName(display));
         }
 
         // Button 212

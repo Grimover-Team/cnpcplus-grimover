@@ -699,8 +699,9 @@ public class NpcAPI extends AbstractNpcAPI {
         NoppesUtilServer.runCommand(world.getMCWorld(), "API", command);
     }
 
+    @Override
     public String getRandomName(int dictionary, int gender) {
-        return CustomNpcs.MARKOV_GENERATOR[dictionary].fetch(gender);
+        return "RenameMe";
     }
 
     /**

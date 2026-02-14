@@ -74,7 +74,6 @@ public class DataDisplay {
 
     public DataDisplay(EntityNPCInterface npc) {
         this.npc = npc;
-        markovGeneratorId = new Random().nextInt(CustomNpcs.MARKOV_GENERATOR.length - 1);
         skinOverlayData = new DataSkinOverlays(npc);
         name = getRandomName();
         animationData = new AnimationData(this);
@@ -83,7 +82,7 @@ public class DataDisplay {
     }
 
     public String getRandomName() {
-        return CustomNpcs.MARKOV_GENERATOR[markovGeneratorId].fetch(markovGender);
+        return "RenameMe";
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbttagcompound) {
@@ -301,9 +300,6 @@ public class DataDisplay {
     }
 
     public void setMarkovGeneratorId(int id) {
-        if (markovGeneratorId == id)
-            return;
-        this.markovGeneratorId = ValueUtil.clamp(id, 0, CustomNpcs.MARKOV_GENERATOR.length - 1);
     }
 
     @SideOnly(Side.CLIENT)

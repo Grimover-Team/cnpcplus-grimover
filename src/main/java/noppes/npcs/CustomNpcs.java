@@ -33,17 +33,6 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
-import nikedemos.markovnames.generators.MarkovAncientGreek;
-import nikedemos.markovnames.generators.MarkovAztec;
-import nikedemos.markovnames.generators.MarkovCustomNPCsClassic;
-import nikedemos.markovnames.generators.MarkovGenerator;
-import nikedemos.markovnames.generators.MarkovJapanese;
-import nikedemos.markovnames.generators.MarkovOldNorse;
-import nikedemos.markovnames.generators.MarkovRoman;
-import nikedemos.markovnames.generators.MarkovSaami;
-import nikedemos.markovnames.generators.MarkovSlavic;
-import nikedemos.markovnames.generators.MarkovSpanish;
-import nikedemos.markovnames.generators.MarkovWelsh;
 import noppes.npcs.compat.PixelmonHelper;
 import noppes.npcs.config.ConfigMain;
 import noppes.npcs.config.LoadConfiguration;
@@ -113,8 +102,6 @@ public class CustomNpcs {
     public static CustomNpcs instance;
 
     public static boolean FreezeNPCs = false;
-
-    public static final MarkovGenerator[] MARKOV_GENERATOR = new MarkovGenerator[10];
 
     public static boolean InitIgnore = false;
     public static boolean TickIgnore = false;
@@ -240,18 +227,6 @@ public class CustomNpcs {
 
     @EventHandler
     public void load(FMLInitializationEvent ev) {
-
-        MARKOV_GENERATOR[0] = new MarkovRoman(3);
-        MARKOV_GENERATOR[1] = new MarkovJapanese(4);
-        MARKOV_GENERATOR[2] = new MarkovSlavic(3);
-        MARKOV_GENERATOR[3] = new MarkovWelsh(3);
-        MARKOV_GENERATOR[4] = new MarkovSaami(3);
-        MARKOV_GENERATOR[5] = new MarkovOldNorse(4);
-        MARKOV_GENERATOR[6] = new MarkovAncientGreek(3);
-        MARKOV_GENERATOR[7] = new MarkovAztec(3);
-        MARKOV_GENERATOR[8] = new MarkovCustomNPCsClassic(3);
-        MARKOV_GENERATOR[9] = new MarkovSpanish(3);
-
         PacketHandler.Instance.registerChannels();
     }
 

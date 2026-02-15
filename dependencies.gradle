@@ -35,12 +35,12 @@
  */
 def embedMixin = !project.hasProperty("nomixin");
 dependencies {
-    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.5.4-GTNH:dev")
+    devOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.8.35-GTNH:dev')
     runtimeOnlyNonPublishable("curse.maven:Nashorn-374413:2924946")
 
-    if(embedMixin){
+    if (embedMixin) {
         // Normal Jar will include built in Mixins
-        shadowImplementation("org.spongepowered:mixin:0.7.11-SNAPSHOT"){
+        implementation("org.spongepowered:mixin:0.7.11-SNAPSHOT"){
             // Mixin includes a lot of dependencies that are too up-to-date
             exclude module: 'launchwrapper'
             exclude module: 'guava'

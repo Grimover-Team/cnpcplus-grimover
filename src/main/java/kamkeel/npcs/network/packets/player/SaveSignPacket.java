@@ -9,7 +9,6 @@ import kamkeel.npcs.network.enums.EnumPlayerPacket;
 import kamkeel.npcs.util.ByteBufUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import noppes.npcs.blocks.tiles.TileBigSign;
 
 import java.io.IOException;
 
@@ -41,18 +40,6 @@ public class SaveSignPacket extends LargeAbstractPacket {
 
     @Override
     protected void handleCompleteData(ByteBuf data, EntityPlayer player) throws IOException {
-        int x = data.readInt(), y = data.readInt(), z = data.readInt();
-        if (player.worldObj.blockExists(x, y, z)) {
-            TileEntity tile = player.worldObj.getTileEntity(x, y, z);
-            if (!(tile instanceof TileBigSign))
-                return;
-            TileBigSign sign = (TileBigSign) tile;
-            if (sign.canEdit) {
-                sign.setText(ByteBufUtils.readString(data));
-                sign.canEdit = false;
-                player.worldObj.markBlockForUpdate(x, y, z);
-            }
-        }
     }
 
     @Override

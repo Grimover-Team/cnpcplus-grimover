@@ -56,7 +56,6 @@ import noppes.npcs.controllers.ServerTagMapController;
 import noppes.npcs.controllers.SpawnController;
 import noppes.npcs.controllers.TagController;
 import noppes.npcs.controllers.TransportController;
-import noppes.npcs.enchants.EnchantInterface;
 import noppes.npcs.entity.EntityChairMount;
 import noppes.npcs.entity.EntityCustomNpc;
 import noppes.npcs.entity.EntityMagicProjectile;
@@ -159,7 +158,6 @@ public class CustomNpcs {
         configPath += File.separator;
         LoadConfiguration.init(configPath);
 
-        EnchantInterface.load();
         CustomItems.load();
 
         proxy.load();

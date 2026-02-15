@@ -33,7 +33,6 @@ import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.handler.data.ISound;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.api.scoreboard.IScoreboard;
-import noppes.npcs.blocks.tiles.TileBigSign;
 import noppes.npcs.controllers.ServerCloneController;
 import noppes.npcs.entity.EntityNPCInterface;
 import noppes.npcs.scripted.scoreboard.ScriptScoreboard;
@@ -413,9 +412,6 @@ public class ScriptWorld implements IWorld {
      */
     public String getSignText(int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-
-        if (tile instanceof TileBigSign)
-            return ((TileBigSign) tile).getText();
 
         if (tile instanceof TileEntitySign) {
             TileEntitySign tileSign = (TileEntitySign) tile;

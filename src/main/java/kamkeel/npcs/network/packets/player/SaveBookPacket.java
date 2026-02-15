@@ -15,7 +15,6 @@ import net.minecraft.item.ItemWritableBook;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.tileentity.TileEntity;
-import noppes.npcs.blocks.tiles.TileBook;
 
 import java.io.IOException;
 
@@ -51,29 +50,6 @@ public class SaveBookPacket extends LargeAbstractPacket {
 
     @Override
     protected void handleCompleteData(ByteBuf data, EntityPlayer player) throws IOException {
-        int x = data.readInt(), y = data.readInt(), z = data.readInt();
-
-        if (player.worldObj.blockExists(x, y, z)) {
-            TileEntity tileentity = player.worldObj.getTileEntity(x, y, z);
-            if (!(tileentity instanceof TileBook))
-                return;
-            TileBook tile = (TileBook) tileentity;
-            if (tile.book.getItem() == Items.written_book)
-                return;
-            boolean sign = data.readBoolean();
-            ItemStack book = ItemStack.loadItemStackFromNBT(ByteBufUtils.readBigNBT(data));
-            if (book == null)
-                return;
-            if (book.getItem() == Items.writable_book && !sign && ItemWritableBook.func_150930_a(book.getTagCompound())) {
-                tile.book.setTagInfo("pages", book.getTagCompound().getTagList("pages", 8));
-            }
-            if (book.getItem() == Items.written_book && sign && ItemEditableBook.validBookTagContents(book.getTagCompound())) {
-                tile.book.setTagInfo("author", new NBTTagString(player.getCommandSenderName()));
-                tile.book.setTagInfo("title", new NBTTagString(book.getTagCompound().getString("title")));
-                tile.book.setTagInfo("pages", book.getTagCompound().getTagList("pages", 8));
-                tile.book.func_150996_a(Items.written_book);
-            }
-        }
     }
 
     @Override

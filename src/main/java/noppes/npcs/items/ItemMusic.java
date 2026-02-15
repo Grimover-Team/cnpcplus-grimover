@@ -11,7 +11,7 @@ public class ItemMusic extends ItemNpcInterface {
     private boolean shouldRotate = false;
 
     public ItemMusic() {
-        setCreativeTab(CustomItems.tabMisc);
+        setCreativeTab(CustomItems.tab);
     }
 
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer player) {

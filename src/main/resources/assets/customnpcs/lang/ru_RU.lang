@@ -352,13 +352,13 @@ faction.increasepoints=Отношение с %s увеличилось на %s �
 faction.decreasepoints=Отношение с %s уменьшилось на %s очков
 faction.attacked=Атакуемы мобами
 
-menu.inventory=Инвентарь
+menu.inventory=Инв
 menu.display=Внешний вид
-menu.stats=Характеристики
-menu.factions=Фракции
+menu.stats=Статы
+menu.factions=Ф
 menu.ai=ИИ
-menu.advanced=Продвинутые
-menu.global=Глобальные
+menu.advanced=Продв
+menu.global=Глобал
 menu.role=Роли
 
 global.banks=Сберегатели

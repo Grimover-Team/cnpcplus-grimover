@@ -14,6 +14,7 @@ import noppes.npcs.api.handler.data.IRecipe;
 import noppes.npcs.controllers.data.RecipeAnvil;
 import noppes.npcs.controllers.data.RecipeCarpentry;
 import noppes.npcs.controllers.data.RecipeScript;
+import noppes.npcs.controllers.data.RecipesDefault;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -95,6 +96,7 @@ public class RecipeController implements IRecipeHandler {
     private void loadDefaultRecipes(int i) {
         if (i == version)
             return;
+        RecipesDefault.loadDefaultRecipes(i);
         saveCategories();
     }
 

@@ -35,12 +35,10 @@ import noppes.npcs.CustomNpcs;
 import noppes.npcs.LogWriter;
 import noppes.npcs.api.IWorld;
 import noppes.npcs.blocks.tiles.TileBanner;
-import noppes.npcs.blocks.tiles.TileBarrel;
 import noppes.npcs.blocks.tiles.TileBeam;
 import noppes.npcs.blocks.tiles.TileBigSign;
 import noppes.npcs.blocks.tiles.TileBlockAnvil;
 import noppes.npcs.blocks.tiles.TileBook;
-import noppes.npcs.blocks.tiles.TileCampfire;
 import noppes.npcs.blocks.tiles.TileCandle;
 import noppes.npcs.blocks.tiles.TileChair;
 import noppes.npcs.blocks.tiles.TileCouchWood;
@@ -51,11 +49,9 @@ import noppes.npcs.blocks.tiles.TileMailbox;
 import noppes.npcs.blocks.tiles.TilePedestal;
 import noppes.npcs.blocks.tiles.TileScripted;
 import noppes.npcs.blocks.tiles.TileShelf;
-import noppes.npcs.blocks.tiles.TileShortLamp;
 import noppes.npcs.blocks.tiles.TileSign;
 import noppes.npcs.blocks.tiles.TileStool;
 import noppes.npcs.blocks.tiles.TileTable;
-import noppes.npcs.blocks.tiles.TileTallLamp;
 import noppes.npcs.blocks.tiles.TileTombstone;
 import noppes.npcs.blocks.tiles.TileWallBanner;
 import noppes.npcs.blocks.tiles.TileWeaponRack;
@@ -137,13 +133,10 @@ import noppes.npcs.client.renderer.RenderNpcDragon;
 import noppes.npcs.client.renderer.RenderNpcSlime;
 import noppes.npcs.client.renderer.RenderProjectile;
 import noppes.npcs.client.renderer.blocks.BlockBannerRenderer;
-import noppes.npcs.client.renderer.blocks.BlockBarrelRenderer;
 import noppes.npcs.client.renderer.blocks.BlockBeamRenderer;
 import noppes.npcs.client.renderer.blocks.BlockBigSignRenderer;
-import noppes.npcs.client.renderer.blocks.BlockBloodRenderer;
 import noppes.npcs.client.renderer.blocks.BlockBookRenderer;
 import noppes.npcs.client.renderer.blocks.BlockBorderRenderer;
-import noppes.npcs.client.renderer.blocks.BlockCampfireRenderer;
 import noppes.npcs.client.renderer.blocks.BlockCandleRenderer;
 import noppes.npcs.client.renderer.blocks.BlockCarpentryBenchRenderer;
 import noppes.npcs.client.renderer.blocks.BlockChairRenderer;
@@ -155,20 +148,15 @@ import noppes.npcs.client.renderer.blocks.BlockMailboxRenderer;
 import noppes.npcs.client.renderer.blocks.BlockPedestalRenderer;
 import noppes.npcs.client.renderer.blocks.BlockScriptedRenderer;
 import noppes.npcs.client.renderer.blocks.BlockShelfRenderer;
-import noppes.npcs.client.renderer.blocks.BlockShortLampRenderer;
 import noppes.npcs.client.renderer.blocks.BlockSignRenderer;
 import noppes.npcs.client.renderer.blocks.BlockStoolRenderer;
 import noppes.npcs.client.renderer.blocks.BlockTableRenderer;
-import noppes.npcs.client.renderer.blocks.BlockTallLampRenderer;
 import noppes.npcs.client.renderer.blocks.BlockTombstoneRenderer;
 import noppes.npcs.client.renderer.blocks.BlockWallBannerRenderer;
 import noppes.npcs.client.renderer.blocks.BlockWeaponRackRenderer;
 import noppes.npcs.client.renderer.items.ItemBannerRenderer;
 import noppes.npcs.client.renderer.items.ItemBannerWallRenderer;
 import noppes.npcs.client.renderer.items.ItemCouchWoolRenderer;
-import noppes.npcs.client.renderer.items.ItemCustomRenderer;
-import noppes.npcs.client.renderer.items.ItemShortLampRenderer;
-import noppes.npcs.client.renderer.items.ItemTallLampRenderer;
 import noppes.npcs.client.renderer.items.ItemToolRenderer;
 import noppes.npcs.client.renderer.items.ScriptedBlockItemRenderer;
 import noppes.npcs.config.ConfigClient;
@@ -206,9 +194,7 @@ import noppes.npcs.entity.EntityNpcSlime;
 import noppes.npcs.entity.EntityProjectile;
 import noppes.npcs.entity.data.ModelData;
 import noppes.npcs.entity.data.ModelPartData;
-import noppes.npcs.items.ItemLinked;
 import noppes.npcs.items.ItemNpcTool;
-import noppes.npcs.items.ItemScripted;
 import org.lwjgl.input.Keyboard;
 
 import java.io.BufferedWriter;
@@ -254,8 +240,6 @@ public class ClientProxy extends CommonProxy {
         if (!ConfigItem.DisableExtraBlock) {
             ClientRegistry.bindTileEntitySpecialRenderer(TileBanner.class, new BlockBannerRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TileWallBanner.class, new BlockWallBannerRenderer());
-            ClientRegistry.bindTileEntitySpecialRenderer(TileTallLamp.class, new BlockTallLampRenderer());
-            ClientRegistry.bindTileEntitySpecialRenderer(TileShortLamp.class, new BlockShortLampRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TileChair.class, new BlockChairRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TileWeaponRack.class, new BlockWeaponRackRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TileCrate.class, new BlockCrateRenderer());
@@ -266,22 +250,17 @@ public class ClientProxy extends CommonProxy {
             ClientRegistry.bindTileEntitySpecialRenderer(TileLamp.class, new BlockLanternRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TileStool.class, new BlockStoolRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TileBigSign.class, new BlockBigSignRenderer());
-            ClientRegistry.bindTileEntitySpecialRenderer(TileBarrel.class, new BlockBarrelRenderer());
-            ClientRegistry.bindTileEntitySpecialRenderer(TileCampfire.class, new BlockCampfireRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TileTombstone.class, new BlockTombstoneRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TileShelf.class, new BlockShelfRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TileSign.class, new BlockSignRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TileBeam.class, new BlockBeamRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TileBook.class, new BlockBookRenderer());
             ClientRegistry.bindTileEntitySpecialRenderer(TilePedestal.class, new BlockPedestalRenderer());
-            RenderingRegistry.registerBlockHandler(new BlockBloodRenderer());
 
             // Tile Item Renderers
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(CustomItems.couchWool), new ItemCouchWoolRenderer());
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(CustomItems.banner), new ItemBannerRenderer());
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(CustomItems.wallBanner), new ItemBannerWallRenderer());
-            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(CustomItems.shortLamp), new ItemShortLampRenderer());
-            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(CustomItems.tallLamp), new ItemTallLampRenderer());
         }
         Minecraft mc = Minecraft.getMinecraft();
 
@@ -668,9 +647,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerItem(Item item) {
-        if (item instanceof ItemScripted || item instanceof ItemLinked) {
-            MinecraftForgeClient.registerItemRenderer(item, new ItemCustomRenderer());
-        } else if (item instanceof ItemNpcTool) {
+        if (item instanceof ItemNpcTool) {
             MinecraftForgeClient.registerItemRenderer(item, new ItemToolRenderer());
         } else {
             MinecraftForgeClient.registerItemRenderer(item, new NpcItemRenderer());

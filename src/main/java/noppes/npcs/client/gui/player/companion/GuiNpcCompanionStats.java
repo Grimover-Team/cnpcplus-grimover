@@ -56,28 +56,6 @@ public class GuiNpcCompanionStats extends GuiNPCInterface implements IGuiData {
     }
 
     public static void addTopMenu(RoleCompanion role, GuiScreen screen, int active) {
-        if (screen instanceof GuiNPCInterface) {
-            GuiNPCInterface gui = (GuiNPCInterface) screen;
-            GuiMenuTopIconButton button;
-            gui.addTopButton(button = new GuiMenuTopIconButton(1, gui.guiLeft + 4, gui.guiTop - 27, "menu.stats", new ItemStack(CustomItems.letter)));
-            gui.addTopButton(button = new GuiMenuTopIconButton(2, button, "companion.talent", new ItemStack(CustomItems.spellHoly)));
-            if (role.hasInv())
-                gui.addTopButton(button = new GuiMenuTopIconButton(3, button, "inv.inventory", new ItemStack(CustomItems.bag)));
-            if (role.job != EnumCompanionJobs.NONE)
-                gui.addTopButton(new GuiMenuTopIconButton(4, button, "job.name", new ItemStack(CustomItems.bag)));
-            gui.getTopButton(active).active = true;
-        }
-        if (screen instanceof GuiContainerNPCInterface) {
-            GuiContainerNPCInterface gui = (GuiContainerNPCInterface) screen;
-            GuiMenuTopIconButton button;
-            gui.addTopButton(button = new GuiMenuTopIconButton(1, gui.guiLeft + 4, gui.guiTop - 27, "menu.stats", new ItemStack(CustomItems.letter)));
-            gui.addTopButton(button = new GuiMenuTopIconButton(2, button, "companion.talent", new ItemStack(CustomItems.spellHoly)));
-            if (role.hasInv())
-                gui.addTopButton(button = new GuiMenuTopIconButton(3, button, "inv.inventory", new ItemStack(CustomItems.bag)));
-            if (role.job != EnumCompanionJobs.NONE)
-                gui.addTopButton(new GuiMenuTopIconButton(4, button, "job.name", new ItemStack(CustomItems.bag)));
-            gui.getTopButton(active).active = true;
-        }
     }
 
     @Override

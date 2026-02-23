@@ -5,12 +5,10 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import kamkeel.npcs.controllers.SyncController;
 import kamkeel.npcs.network.PacketHandler;
-import kamkeel.npcs.network.enums.EnumSoundOperation;
 import kamkeel.npcs.network.enums.EnumSyncAction;
 import kamkeel.npcs.network.enums.EnumSyncType;
 import kamkeel.npcs.network.packets.data.ClonerPacket;
 import kamkeel.npcs.network.packets.data.MarkDataPacket;
-import kamkeel.npcs.network.packets.data.SoundManagementPacket;
 import kamkeel.npcs.network.packets.data.VillagerListPacket;
 import kamkeel.npcs.network.packets.data.gui.GuiOpenPacket;
 import kamkeel.npcs.network.packets.data.large.SyncPacket;
@@ -27,13 +25,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -51,7 +47,6 @@ import noppes.npcs.controllers.ServerCloneController;
 import noppes.npcs.controllers.data.Animation;
 import noppes.npcs.controllers.data.AnimationData;
 import noppes.npcs.controllers.data.Line;
-import noppes.npcs.controllers.data.LinkedItem;
 import noppes.npcs.controllers.data.MarkData;
 import noppes.npcs.controllers.data.Party;
 import noppes.npcs.controllers.data.PlayerData;
@@ -59,9 +54,6 @@ import noppes.npcs.controllers.data.PlayerQuestData;
 import noppes.npcs.controllers.data.Quest;
 import noppes.npcs.controllers.data.QuestData;
 import noppes.npcs.entity.EntityNPCInterface;
-import noppes.npcs.items.ItemExcalibur;
-import noppes.npcs.items.ItemLinked;
-import noppes.npcs.items.ItemShield;
 import noppes.npcs.items.ItemSoulstoneEmpty;
 import noppes.npcs.quests.QuestKill;
 import noppes.npcs.roles.RoleFollower;
@@ -172,33 +164,6 @@ public class ServerEventsHandler {
     }
 
     @SubscribeEvent
-    public void invoke(LivingHurtEvent event) {
-        if (!(event.entityLiving instanceof EntityPlayer))
-            return;
-
-        EntityPlayer player = (EntityPlayer) event.entityLiving;
-        if (event.source.isUnblockable() || event.source.isFireDamage())
-            return;
-        if (!player.isBlocking())
-            return;
-        ItemStack item = player.getCurrentEquippedItem();
-        if (item == null || !(item.getItem() instanceof ItemShield))
-            return;
-        if (((ItemShield) item.getItem()).material.getDamageVsEntity() < player.getRNG().nextInt(9))
-            return;
-        float damage = item.getItemDamage() + event.ammount;
-
-        item.damageItem((int) event.ammount, player);
-
-        if (damage > item.getMaxDamage())
-            event.ammount = damage - item.getMaxDamage();
-        else {
-            event.ammount = 0;
-            event.setCanceled(true);
-        }
-    }
-
-    @SubscribeEvent
     public void invoke(PlayerInteractEvent event) {
         EntityPlayer player = event.entityPlayer;
         Block block = player.worldObj.getBlock(event.x, event.y, event.z);
@@ -255,9 +220,6 @@ public class ServerEventsHandler {
         if (event.entityLiving.worldObj.isRemote)
             return;
         if (event.source.getEntity() != null) {
-            if (event.source.getEntity() instanceof EntityPlayer) {
-                doExcalibur((EntityPlayer) event.source.getEntity(), event.entityLiving);
-            }
 
             if (event.source.getEntity() instanceof EntityNPCInterface) {
                 EntityNPCInterface npc = (EntityNPCInterface) event.source.getEntity();
@@ -305,14 +267,6 @@ public class ServerEventsHandler {
         PlayerData data = PlayerData.get(event.player);
         data.setGUIOpen(false);
         data.editingNpc = null;
-    }
-
-    private void doExcalibur(EntityPlayer player, EntityLivingBase entity) {
-        ItemStack item = player.getCurrentEquippedItem();
-        if (item == null || item.getItem() != CustomItems.excalibur)
-            return;
-        PacketHandler.Instance.sendToPlayer(new SoundManagementPacket(EnumSoundOperation.PLAY_MUSIC, "customnpcs:songs.excalibur"), (EntityPlayerMP) player);
-        player.addChatMessage(new ChatComponentTranslation("<" + StatCollector.translateToLocal(item.getItem().getUnlocalizedName() + ".name") + "> " + ItemExcalibur.quotes[player.getRNG().nextInt(ItemExcalibur.quotes.length)]));
     }
 
     private void doFactionPoints(EntityPlayer player, EntityNPCInterface npc) {

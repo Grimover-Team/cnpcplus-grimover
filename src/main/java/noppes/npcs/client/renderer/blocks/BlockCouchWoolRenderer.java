@@ -59,6 +59,8 @@ public class BlockCouchWoolRenderer extends BlockRendererInterface {
 
     public static final ResourceLocation wool = new ResourceLocation("customnpcs", "textures/models/couch/wool.png");
 
+    public static final ResourceLocation resourceTop = new ResourceLocation("customnpcs", "textures/cache/wool_colored_white.png");
+
     public BlockCouchWoolRenderer() {
         ((BlockCouchWool) CustomItems.couchWool).renderId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(this);
@@ -93,7 +95,7 @@ public class BlockCouchWoolRenderer extends BlockRendererInterface {
             else
                 modelLegacyCouchMiddle.render(null, 0, 0, 0, 0, 0.0F, 0.0625F);
 
-            this.bindTexture(BlockTallLampRenderer.resourceTop);
+            this.bindTexture(resourceTop);
             float[] color = ColorUtil.hexToRGB(tile.color);
             GL11.glColor3f(color[0], color[1], color[2]);
 

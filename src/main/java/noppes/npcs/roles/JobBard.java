@@ -25,10 +25,6 @@ public class JobBard extends JobInterface {
 
     public JobBard(EntityNPCInterface npc) {
         super(npc);
-        if (CustomItems.banjo != null) {
-            mainhand = new ItemStack(CustomItems.banjo);
-            overrideMainHand = overrideOffHand = true;
-        }
     }
 
     @Override
@@ -54,36 +50,6 @@ public class JobBard extends JobInterface {
     }
 
     public void setInstrument(int i) {
-        if (CustomItems.banjo == null)
-            return;
-        instrument = EnumBardInstrument.values()[i];
-        overrideMainHand = overrideOffHand = instrument != EnumBardInstrument.None;
-        switch (instrument) {
-            case None:
-                this.mainhand = null;
-                this.offhand = null;
-                break;
-            case Banjo:
-                this.mainhand = new ItemStack(CustomItems.banjo);
-                this.offhand = null;
-                break;
-            case Violin:
-                this.mainhand = new ItemStack(CustomItems.violin);
-                this.offhand = new ItemStack(CustomItems.violinbow);
-                break;
-            case Guitar:
-                this.mainhand = new ItemStack(CustomItems.guitar);
-                this.offhand = null;
-                break;
-            case Harp:
-                this.mainhand = new ItemStack(CustomItems.harp);
-                this.offhand = null;
-                break;
-            case FrenchHorn:
-                this.mainhand = new ItemStack(CustomItems.frenchHorn);
-                this.offhand = null;
-                break;
-        }
     }
 
     public EnumBardInstrument getInstrument() {

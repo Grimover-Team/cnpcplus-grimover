@@ -20,7 +20,6 @@ import noppes.npcs.CustomNpcs;
 import noppes.npcs.CustomNpcsPermissions;
 import noppes.npcs.blocks.BlockBanner;
 import noppes.npcs.blocks.BlockChair;
-import noppes.npcs.blocks.BlockTallLamp;
 import noppes.npcs.blocks.BlockWallBanner;
 import noppes.npcs.blocks.tiles.TileBanner;
 import noppes.npcs.blocks.tiles.TileChair;
@@ -86,7 +85,7 @@ public class ItemNpcTool extends Item {
 
         if (isPaintbrush(stack)) {
             Block block = world.getBlock(x, y, z);
-            if (block instanceof BlockTallLamp || block instanceof BlockBanner) {
+            if (block instanceof BlockBanner) {
                 int meta = world.getBlockMetadata(x, y, z);
                 if (meta >= 7)
                     y--;
@@ -127,7 +126,7 @@ public class ItemNpcTool extends Item {
 
         if (isPaintbrush(itemstack)) {
             Block block = player.worldObj.getBlock(x, y, z);
-            if (block instanceof BlockTallLamp || block instanceof BlockBanner) {
+            if (block instanceof BlockBanner) {
                 int meta = player.worldObj.getBlockMetadata(x, y, z);
                 if (meta >= 7)
                     y--;

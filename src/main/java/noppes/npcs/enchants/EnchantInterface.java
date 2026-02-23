@@ -12,11 +12,6 @@ public abstract class EnchantInterface extends Enchantment {
 
     private static EnumEnchantmentType CustomNpcsType;
 
-    public static EnchantInterface Damage;
-    public static EnchantInterface Poison;
-    public static EnchantInterface Confusion;
-    public static EnchantInterface Infinite;
-
     private Class[] classes;
 
     protected EnchantInterface(int par2, Class... obs) {
@@ -39,10 +34,6 @@ public abstract class EnchantInterface extends Enchantment {
         if (!ConfigMain.DisableEnchants) {
             CustomNpcsType = EnumHelper.addEnchantmentType("customnpcs_enchants");
             try {
-                Damage = new EnchantDamage();
-                Poison = new EnchantPoison();
-                Confusion = new EnchantConfusion();
-                Infinite = new EnchantInfinite();
             } catch (Exception e) {
                 LogWriter.except(e);
             }

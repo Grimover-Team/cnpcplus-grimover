@@ -69,7 +69,7 @@ public final class AchievementPacket extends AbstractPacket {
         boolean isNotParty = !in.readBoolean();
         String description = StatCollector.translateToLocal(ByteBufUtils.readString(in));
         String message = ByteBufUtils.readString(in);
-        Achievement ach = isNotParty ? new MessageAchievement(message, description) : new MessageAchievement(CustomItems.bag == null ? Items.paper : CustomItems.bag, message, description);
+        Achievement ach = isNotParty ? new MessageAchievement(message, description) : new MessageAchievement(Items.paper, message, description);
         Minecraft.getMinecraft().guiAchievement.func_146256_a(ach);
         ObfuscationReflectionHelper.setPrivateValue(GuiAchievement.class, Minecraft.getMinecraft().guiAchievement, ach.getDescription(), 4);
     }

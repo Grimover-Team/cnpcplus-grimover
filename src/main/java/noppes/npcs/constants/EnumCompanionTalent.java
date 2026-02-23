@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 import noppes.npcs.CustomItems;
 
 public enum EnumCompanionTalent {
-    INVENTORY(CustomItems.satchel), ARMOR(Items.iron_chestplate),
+    INVENTORY(Items.diamond_sword), ARMOR(Items.iron_chestplate),
     SWORD(Items.diamond_sword), RANGED(Items.bow),
-    ACROBATS(Items.leather_boots), INTEL(CustomItems.letter);
+    ACROBATS(Items.leather_boots), INTEL(Items.bow);
 
     public ItemStack item;
 

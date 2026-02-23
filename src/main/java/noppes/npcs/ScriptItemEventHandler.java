@@ -23,7 +23,6 @@ import noppes.npcs.api.entity.IPlayer;
 import noppes.npcs.api.item.IItemCustomizable;
 import noppes.npcs.api.item.IItemStack;
 import noppes.npcs.blocks.BlockBanner;
-import noppes.npcs.blocks.BlockTallLamp;
 import noppes.npcs.blocks.tiles.TileColorable;
 import noppes.npcs.controllers.PlayerDataController;
 import noppes.npcs.controllers.data.PlayerData;
@@ -141,7 +140,7 @@ public class ScriptItemEventHandler {
                 int z = e.z;
 
                 Block block = player.worldObj.getBlock(x, y, z);
-                if (block instanceof BlockTallLamp || block instanceof BlockBanner) {
+                if (block instanceof BlockBanner) {
                     int meta = player.worldObj.getBlockMetadata(x, y, z);
                     if (meta >= 7)
                         y--;

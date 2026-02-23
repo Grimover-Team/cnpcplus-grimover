@@ -1,5 +1,7 @@
 package noppes.npcs.client.renderer.items;
 
+import static noppes.npcs.client.renderer.blocks.BlockCouchWoolRenderer.resourceTop;
+
 import kamkeel.npcs.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -7,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import noppes.npcs.client.renderer.blocks.BlockCouchWoolRenderer;
 import noppes.npcs.client.renderer.blocks.BlockRendererInterface;
-import noppes.npcs.client.renderer.blocks.BlockTallLampRenderer;
 import noppes.npcs.config.ConfigClient;
 import org.lwjgl.opengl.GL11;
 
@@ -53,7 +54,7 @@ public class ItemCouchWoolRenderer implements IItemRenderer {
             BlockCouchWoolRenderer.modelLegacyCouchMiddle.render(null, 0, 0, 0, 0, 0.0F, 0.0625F);
 
             // Bind the top texture (for the wool overlay)
-            mc.getTextureManager().bindTexture(BlockTallLampRenderer.resourceTop);
+            mc.getTextureManager().bindTexture(resourceTop);
             GL11.glColor3f(color[0], color[1], color[2]);
             BlockCouchWoolRenderer.modelLegacyCouchMiddleWool.render(null, 0, 0, 0, 0, 0.0F, 0.0625F);
         } else {

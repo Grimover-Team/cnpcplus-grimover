@@ -19,7 +19,7 @@ public class MessageAchievement extends Achievement {
     }
 
     public MessageAchievement(String message, String description) {
-        this(CustomItems.letter == null ? Items.paper : CustomItems.letter, message, description);
+        this(Items.paper, message, description);
     }
 
     @Override
